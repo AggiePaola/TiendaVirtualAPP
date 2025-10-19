@@ -4,4 +4,10 @@
     <string name="op_mi_tienda_v" >Mi tienda</string>
     <string name="op_resenia_v" >Resenia</string>
     <string name="op_cerrar_sesion_v" >Cerrar sesion</string>
+
+    <string name="op_mis_productos_v">Mis productos</string>
+    <string name="op_mis_ordenes_v">Mis ordenes</string>
+
+    <string name="txt_bienvenida">Bienvenido</string>
+
 </resources>
