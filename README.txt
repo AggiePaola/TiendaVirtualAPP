@@ -1,4 +1,5 @@
-C:\Users\Angie\Desktop\TiendaVirtualAPP
+https://github.com/AggiePaola/TiendaVirtualAPP
+
 Splash
 	Libreria
 Mensaje de Bienvenida
@@ -8,16 +9,15 @@ Sección de Perfil de usuario
 
 git: C:\Users\Angie\Desktop\TiendaVirtualAPP
 
-        <activity
-            android:name=".SplashScreenActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+libreria: 
+[version]
+lottieV="4.2.1"
 
-        </activity>
+[libraries]
+lottie={group="com.airbnb.android",name="lottie",name="lottie",version.ref="lottieV"}
+
+nombre del paquete: com.angie.tiendavirtualapp
+
+
+plugins:
+id("com.google.gms.google-services") version "4.4.4" apply false
