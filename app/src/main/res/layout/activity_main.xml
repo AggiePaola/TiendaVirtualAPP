@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-<!--
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,90 +14,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" /> -->
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <!-- Codigo front no funcional FRONT REGISTRO-->
-        <?xml version="1.0" encoding="utf-8"?>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:padding="24dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="70dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_marginBottom="24dp"
-                android:text="Registro de Clientes"
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/etName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/edit_text"
-                android:hint="Nombre completo"
-                android:inputType="textPersonName"
-                android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="@android:drawable/edit_text"
-                android:hint="Correo electronico"
-                android:inputType="textEmailAddress"
-                android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/etPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="@android:drawable/edit_text"
-                android:hint="Contrasenia"
-                android:inputType="textPassword"
-                android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/etPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="@android:drawable/edit_text"
-                android:hint="Repetir contrasenia"
-                android:inputType="textPassword"
-                android:padding="12dp" />
-
-            <Button
-                android:id="@+id/btnRegister"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Olvide mi contrasenia" />
-
-            <Button
-                android:id="@+id/btnGoLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="#E0E0E0"
-                android:text="Ya tengo cuenta"
-                android:textColor="#000000" />
-        </LinearLayout>
-    </ScrollView>
-
-    <!-- FIN Codigo front no funcional  REGISTRO-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

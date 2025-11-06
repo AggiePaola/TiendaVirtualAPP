@@ -9,7 +9,7 @@
     <item
         android:id="@+id/op_agregar_prod_v"
         android:title=""
-        android:enable="false"
+        android:enabled="true"
         />
     <item
         android:id="@+id/op_mis_ordenes_v"
