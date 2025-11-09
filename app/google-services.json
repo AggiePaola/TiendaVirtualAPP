@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "751066454259",
+    "project_id": "tiendaappangie-c02a4",
+    "storage_bucket": "tiendaappangie-c02a4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751066454259:android:c0dd9a7fb9f4acd711ff86",
+        "android_client_info": {
+          "package_name": "com.angie.tiendavirtualapp_kotlin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZyFZXZTyteCV_blLD6JW4TtBpJomfXMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
