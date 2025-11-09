@@ -16,12 +16,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!--NavigationDrawer Vendedor-->
-    <string name="op_inicio_v">Inicio</string>
-    <string name="op_mi_tienda_v">Mi tienda</string>
-    <string name="op_categorias_v">Categorias</string>
-    <string name="op_productos_v">Productos</string>
-    <string name="op_resenia_v">Reseñas</string>
-    <string name="op_cerrar_sesion_v">Cerrar sesión</string>
+    <!--Registro de vendedor-->
+    <string name="txtRegistroV">Registro de vendedor</string>
+    <string name="etNombresV">Nombres completos</string>
+    <string name="etEmail">Email</string>
+    <string name="etPassword">Password</string>
+    <string name="etCPassword">Confirmar password</string>
+    <string name="btnRegistrarV">Registrarme</string>
 
 </resources>
