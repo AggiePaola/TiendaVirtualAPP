@@ -114,4 +114,4 @@ class RegistroVendedorActivity : AppCompatActivity() {
             }
 
     }
-}
+} imagen
