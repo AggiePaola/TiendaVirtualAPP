@@ -65,4 +65,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
+// Cliente HTTP para enviar las imágenes a ImgBB
+implementation("com.squareup.okhttp3:okhttp:4.11.0")
+
+// Para manejar respuestas JSON
+implementation("org.json:json:20230227")
 }

@@ -129,7 +129,7 @@ class FragmentCarritoC : Fragment() {
                             suma += precioFinal.toDouble()
                         }
 
-                        binding.sumaProductos.setText("Total: ${suma.toString().plus(" USD")}")
+                        binding.sumaProductos.setText("Total: ${suma.toString().plus(" pesos")}")
 
                     }
                 }

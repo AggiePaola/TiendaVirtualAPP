@@ -299,54 +299,69 @@ class AgregarProductoActivity : AppCompatActivity() {
             }
     }
 
-    private fun subirImgsStorage(keyId: String){
-        for (i in imagenSelecArrayList.indices){
+    private fun subirImgsStorage(keyId: String) {
+        val apiKey = "3053985189e13866643b1c4e053a1837" // Tu API key de ImgBB
+
+        for (i in imagenSelecArrayList.indices) {
             val modeloImagenSel = imagenSelecArrayList[i]
 
-            if (!modeloImagenSel.deInternet){
-                val nombreImagen = modeloImagenSel.id
-                val rutaImagen = "Productos/$nombreImagen"
+            if (!modeloImagenSel.deInternet) {
+                val inputStream = contentResolver.openInputStream(modeloImagenSel.imagenUri!!)
+                val bytes = inputStream!!.readBytes()
+                val encodedImage = android.util.Base64.encodeToString(bytes, android.util.Base64.DEFAULT)
 
-                val storageRef = FirebaseStorage.getInstance().getReference(rutaImagen)
-                storageRef.putFile(modeloImagenSel.imagenUri!!)
-                    .addOnSuccessListener {taskSnapshot->
-                        val uriTask = taskSnapshot.storage.downloadUrl
-                        while (!uriTask.isSuccessful);
-                        val urlImgCargada = uriTask.result
+                val client = okhttp3.OkHttpClient()
+                val requestBody = okhttp3.FormBody.Builder()
+                    .add("key", apiKey)
+                    .add("image", encodedImage)
+                    .build()
 
-                        if (uriTask.isSuccessful){
+                val request = okhttp3.Request.Builder()
+                    .url("https://api.imgbb.com/1/upload")
+                    .post(requestBody)
+                    .build()
+
+                Thread {
+                    try {
+                        val response = client.newCall(request).execute()
+                        val responseBody = response.body?.string()
+                        if (response.isSuccessful && responseBody != null) {
+                            val json = org.json.JSONObject(responseBody)
+                            val imageUrl = json.getJSONObject("data").getString("url")
+
+                            // Guardamos la URL de ImgBB en Firebase Realtime Database
                             val hashMap = HashMap<String, Any>()
-                            hashMap["id"] = "${modeloImagenSel.id}"
-                            hashMap["imagenUrl"] = "${urlImgCargada}"
+                            hashMap["id"] = modeloImagenSel.id
+                            hashMap["imagenUrl"] = imageUrl
 
                             val ref = FirebaseDatabase.getInstance().getReference("Productos")
                             ref.child(keyId).child("Imagenes")
-                                .child(nombreImagen)
+                                .child(modeloImagenSel.id)
                                 .updateChildren(hashMap)
 
+                            runOnUiThread {
+                                progressDialog.dismiss()
+                                Toast.makeText(this, "Imagen subida correctamente", Toast.LENGTH_SHORT).show()
+                                limpiarCampos()
+                            }
+                        } else {
+                            runOnUiThread {
+                                progressDialog.dismiss()
+                                Toast.makeText(this, "Error al subir imagen", Toast.LENGTH_SHORT).show()
+                            }
                         }
-                        if (Edicion){
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        runOnUiThread {
                             progressDialog.dismiss()
-                            val intent = Intent(this@AgregarProductoActivity, MainActivityVendedor::class.java)
-                            startActivity(intent)
-                            Toast.makeText(this,"Se actualizó la información del producto",Toast.LENGTH_SHORT).show()
-                            finishAffinity()
-                        }else{
-                            progressDialog.dismiss()
-                            Toast.makeText(this, "Se agregó el producto",Toast.LENGTH_SHORT).show()
-                            limpiarCampos()
+                            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
                         }
                     }
-                    .addOnFailureListener {e->
-                        progressDialog.dismiss()
-                        Toast.makeText(this, "${e.message}",Toast.LENGTH_SHORT).show()
-                    }
+                }.start()
             }
-
-
         }
-
     }
+
 
     private fun limpiarCampos() {
         imagenSelecArrayList.clear()

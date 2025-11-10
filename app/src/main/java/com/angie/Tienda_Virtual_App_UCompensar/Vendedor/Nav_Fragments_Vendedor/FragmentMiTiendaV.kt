@@ -63,8 +63,8 @@ class FragmentMiTiendaV : Fragment() {
                     }
                 }
 
-                binding.tvGanancias.setText(total.toString().plus(" USD"))
-                binding.tvPerdidas.setText(totalPerdida.toString().plus(" USD"))
+                binding.tvGanancias.setText(total.toString().plus(" pesos"))
+                binding.tvPerdidas.setText(totalPerdida.toString().plus(" pesos"))
             }
 
             override fun onCancelled(error: DatabaseError) {

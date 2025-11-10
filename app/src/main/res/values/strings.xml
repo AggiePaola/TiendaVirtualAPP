@@ -12,7 +12,7 @@
 
     <!--NavigationDrawer Vendedor-->
     <string name="op_inicio_v">Inicio</string>
-    <string name="op_mi_tienda_v">Mi tienda</string>
+    <string name="op_mi_tienda_v">Tienda</string>
     <string name="op_categorias_v">Categorias</string>
     <string name="op_productos_v">Productos</string>
     <string name="op_resenia_v">Reseñas</string>
@@ -24,7 +24,7 @@
     <string name="op_cerrar_sesion_c">Cerrar sesión</string>
 
     <!--Bottom Navigation Bar Vendedor-->
-    <string name="op_mis_productos_v">Mis productos</string>
+    <string name="op_mis_productos_v">Productos</string>
     <string name="op_mis_ordenes_v">Órdenes</string>
 
     <!--Bottom Navigation Bar Cliente-->
@@ -38,28 +38,28 @@
 
     <!--Registro de vendedor-->
     <string name="txtRegistroV">Registro de vendedor</string>
-    <string name="etNombresV">Nombres completos</string>
+    <string name="etNombresV">Nombre/s</string>
     <string name="etEmail">Email</string>
-    <string name="etPassword">Password</string>
-    <string name="etCPassword">Confirmar password</string>
-    <string name="btnRegistrarV">Registrarme</string>
+    <string name="etPassword">Contraseña</string>
+    <string name="etCPassword">Repita su Contraseña</string>
+    <string name="btnRegistrarV">Registor</string>
 
     <!--Registro de clientes-->
     <string name="txtRegistroC">Registro de cliente</string>
-    <string name="etNombresC">Nombres completos</string>
-    <string name="btnRegistrarC">Registrarme</string>
+    <string name="etNombresC">Nombre/s</string>
+    <string name="btnRegistrarC">Registro</string>
 
-    <!--Login de vendedor-->
-    <string name="txtLoginV">Login de vendedor</string>
+    <!--Inicio de sesión de vendedor-->
+    <string name="txtLoginV">Inicio de sesión vendedor</string>
     <string name="btnLoginV">Ingresar</string>
     <string name="txtNoCuenta">¿No tienes una cuenta?</string>
     <string name="tvRegistrarV">Registrarme</string>
 
-    <!--Login de cliente-->
-    <string name="txtLoginC">Login de cliente</string>
+    <!--Inicio de sesión  de cliente-->
+    <string name="txtLoginC">Inicio de sesión de cliente</string>
     <string name="btnLoginC">Ingresar</string>
     <string name="tvRegistrarC">Registrarme</string>
-    <string name="tvRecuperarPass">Recuperar contraseña</string>
+    <string name="tvRecuperarPass">Olvidé mi contraseña</string>
 
     <!--Olvidé mi contraseña-->
     <string name="txtRecuperarPass">Recuperar contraseña</string>
@@ -243,10 +243,10 @@
     <string name="tvEstado5">Cancelado</string>
 
     <string name="txtGanancias">Ganancias</string>
-    <string name="tvGanancias">0 USD</string>
+    <string name="tvGanancias">$ 0</string>
 
     <string name="txtPerdidas">Pérdidas</string>
-    <string name="tvPerdidas">0 USD</string>
+    <string name="tvPerdidas">$ 0</string>
 
     <string name="btnVerClientes">Mis clientes</string>
     <string name="txtListaClientes">Lista de clientes</string>

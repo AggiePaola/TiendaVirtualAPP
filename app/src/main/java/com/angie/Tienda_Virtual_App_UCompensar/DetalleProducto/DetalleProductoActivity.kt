@@ -86,17 +86,8 @@ class DetalleProductoActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
             }
         })
-
-
-
-
-
-
-
-
 
 
     }
@@ -116,11 +107,11 @@ class DetalleProductoActivity : AppCompatActivity() {
 
                     binding.nombrePD.text = nombre
                     binding.descripcionPD.text = descripcion
-                    binding.precioPD.text = precio.plus(" USD")
+                    binding.precioPD.text = precio.plus(" pesos")
 
                     if (!precioDesc.equals("") && !notaDesc.equals("")){
                         /*Producto con descuento*/
-                        binding.precioDescPD.text = precioDesc.plus(" USD")
+                        binding.precioDescPD.text = precioDesc.plus(" pesos")
                         binding.notaDescPD.text = notaDesc
 
                         binding.precioPD.paintFlags = binding.precioPD.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
