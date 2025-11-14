@@ -20,7 +20,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+
 import com.google.firebase.storage.FirebaseStorage
+import okhttp3.Call
+import java.io.IOException
 
 class FragmentCategoriasV : Fragment() {
 
@@ -139,36 +142,70 @@ class FragmentCategoriasV : Fragment() {
     }
 
     private fun subirImgStorage(keyId: String) {
-        progressDialog.setMessage("Subiendo imagen")
-        progressDialog.show()
+            progressDialog.setMessage("Subiendo imagen...")
+            progressDialog.show()
 
-        val nombreImagen = keyId
-        val nombreCarpeta = "Categorias/$nombreImagen"
-        val storageReference = FirebaseStorage.getInstance().getReference(nombreCarpeta)
-        storageReference.putFile(imageUri!!)
-            .addOnSuccessListener {taskSnapshot->
-                progressDialog.dismiss()
-                val uriTask = taskSnapshot.storage.downloadUrl
-                while (!uriTask.isSuccessful);
-                val urlImgCargada = uriTask.result
+            // 1. Convertir imagen a Base64
+            val inputStream = requireActivity().contentResolver.openInputStream(imageUri!!)
+            val bytes = inputStream!!.readBytes()
+            val encodedImage = android.util.Base64.encodeToString(bytes, android.util.Base64.DEFAULT)
 
-                if (uriTask.isSuccessful){
-                    val hashMap = HashMap<String, Any>()
-                    hashMap["imagenUrl"] = "$urlImgCargada"
-                    val ref = FirebaseDatabase.getInstance().getReference("Categorias")
-                    ref.child(nombreImagen).updateChildren(hashMap)
-                    Toast.makeText(mContext,"Se agregó la categoria con éxito",Toast.LENGTH_SHORT).show()
-                    binding.etCategoria.setText("")
-                    imageUri = null
-                    binding.imgCategorias.setImageURI(imageUri)
-                    binding.imgCategorias.setImageResource(R.drawable.categorias)
+            // 2. API Key ImgBB
+            val apiKey = "3053985189e13866643b1c4e053a1837"
+
+            // 3. Petición HTTP con OkHttp
+            val client = okhttp3.OkHttpClient()
+            val requestBody = okhttp3.FormBody.Builder()
+                .add("key", apiKey)
+                .add("image", encodedImage)
+                .build()
+
+            val request = okhttp3.Request.Builder()
+                .url("https://api.imgbb.com/1/upload")
+                .post(requestBody)
+                .build()
+
+            client.newCall(request).enqueue(object : okhttp3.Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    requireActivity().runOnUiThread {
+                        progressDialog.dismiss()
+                        Toast.makeText(mContext, "Error al subir la imagen: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
-            .addOnFailureListener {e->
-                progressDialog.dismiss()
-                Toast.makeText(context, "${e.message}",Toast.LENGTH_SHORT).show()
 
-            }
+                override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                    val responseData = response.body?.string()
+
+                    try {
+                        val json = org.json.JSONObject(responseData!!)
+                        val imageUrl = json.getJSONObject("data").getString("url")
+
+                        // 4. Guardar URL en Firebase
+                        val hashMap = HashMap<String, Any>()
+                        hashMap["imagenUrl"] = imageUrl
+
+                        val ref = FirebaseDatabase.getInstance().getReference("Categorias")
+                        ref.child(keyId).updateChildren(hashMap)
+
+                        requireActivity().runOnUiThread {
+                            progressDialog.dismiss()
+                            Toast.makeText(mContext, "Categoría agregada con éxito", Toast.LENGTH_SHORT).show()
+
+                            // limpiar UI
+                            binding.etCategoria.text.clear()
+                            imageUri = null
+                            binding.imgCategorias.setImageResource(R.drawable.categorias)
+                        }
+
+                    } catch (e: Exception) {
+                        requireActivity().runOnUiThread {
+                            progressDialog.dismiss()
+                            Toast.makeText(mContext, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            })
+        }
+
     }
 
-}
